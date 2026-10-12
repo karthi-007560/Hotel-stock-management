@@ -1,0 +1,663 @@
+/* =========================================
+   DASHBOARD MODERN THEME
+========================================= */
+
+.page {
+  position: relative;
+  min-height: 100%;
+  color: #172033;
+}
+
+/* Background glow */
+.page::before {
+  content: "";
+  position: fixed;
+  width: 360px;
+  height: 360px;
+  top: 80px;
+  right: -160px;
+  border-radius: 50%;
+  background: rgba(99, 102, 241, 0.08);
+  filter: blur(70px);
+  pointer-events: none;
+  z-index: -1;
+  animation: dashboardGlow 8s ease-in-out infinite;
+}
+
+.page::after {
+  content: "";
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  bottom: -100px;
+  left: -120px;
+  border-radius: 50%;
+  background: rgba(6, 182, 212, 0.06);
+  filter: blur(70px);
+  pointer-events: none;
+  z-index: -1;
+}
+
+
+/* =========================================
+   STAT CARDS
+========================================= */
+
+.statGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-top: 24px;
+  perspective: 1200px;
+}
+
+.statGrid > * {
+  position: relative;
+  overflow: hidden;
+  min-height: 140px;
+
+  border-radius: 22px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.98),
+      rgba(247, 248, 255, 0.92)
+    );
+
+  border: 1px solid rgba(99, 102, 241, 0.10);
+
+  box-shadow:
+    0 12px 35px rgba(45, 55, 90, 0.08);
+
+  transform-style: preserve-3d;
+
+  animation: cardEnter 0.65s ease both;
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+
+
+/* Different entrance delay */
+
+.statGrid > *:nth-child(1) {
+  animation-delay: 0.05s;
+}
+
+.statGrid > *:nth-child(2) {
+  animation-delay: 0.12s;
+}
+
+.statGrid > *:nth-child(3) {
+  animation-delay: 0.19s;
+}
+
+.statGrid > *:nth-child(4) {
+  animation-delay: 0.26s;
+}
+
+
+/* Card glow */
+
+.statGrid > *::before {
+  content: "";
+
+  position: absolute;
+
+  width: 120px;
+  height: 120px;
+
+  right: -45px;
+  top: -50px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(99, 102, 241, 0.13),
+      transparent 70%
+    );
+
+  transition: transform 0.4s ease;
+}
+
+
+.statGrid > *:hover::before {
+  transform: scale(1.5);
+}
+
+
+/* Bottom gradient */
+
+.statGrid > *::after {
+  content: "";
+
+  position: absolute;
+
+  left: 18px;
+  right: 18px;
+  bottom: 0;
+
+  height: 3px;
+
+  border-radius: 5px 5px 0 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      #6366f1,
+      #8b5cf6,
+      #06b6d4
+    );
+
+  opacity: 0.35;
+
+  transform: scaleX(0.3);
+
+  transform-origin: left;
+
+  transition:
+    transform 0.35s ease,
+    opacity 0.35s ease;
+}
+
+
+.statGrid > *:hover::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+
+/* 3D hover */
+
+.statGrid > *:hover {
+  transform:
+    translateY(-8px)
+    rotateX(3deg)
+    rotateY(-3deg)
+    scale(1.015);
+
+  border-color:
+    rgba(99, 102, 241, 0.22);
+
+  box-shadow:
+    0 25px 55px rgba(45, 55, 100, 0.15);
+}
+
+
+/* =========================================
+   MAIN DASHBOARD
+========================================= */
+
+.dash {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.35fr)
+    minmax(320px, 0.85fr);
+
+  gap: 20px;
+
+  margin-top: 22px;
+
+  perspective: 1200px;
+}
+
+
+/* =========================================
+   PANEL
+========================================= */
+
+.dash > * {
+  position: relative;
+
+  overflow: hidden;
+
+  border-radius: 24px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.97),
+      rgba(248, 249, 255, 0.94)
+    );
+
+  border: 1px solid rgba(99, 102, 241, 0.10);
+
+  box-shadow:
+    0 15px 45px rgba(45, 55, 90, 0.08);
+
+  transform-style: preserve-3d;
+
+  animation: panelEnter 0.7s ease both;
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+
+.dash > *:first-child {
+  animation-delay: 0.2s;
+}
+
+
+.dash > *:last-child {
+  animation-delay: 0.3s;
+}
+
+
+.dash > *:hover {
+  transform:
+    translateY(-6px)
+    rotateX(2deg)
+    rotateY(-1deg);
+
+  box-shadow:
+    0 25px 60px rgba(45, 55, 100, 0.13);
+}
+
+
+/* Panel glow */
+
+.dash > *::before {
+  content: "";
+
+  position: absolute;
+
+  width: 180px;
+  height: 180px;
+
+  right: -100px;
+  top: -100px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(99, 102, 241, 0.08),
+      transparent 70%
+    );
+
+  pointer-events: none;
+}
+
+
+/* =========================================
+   STOCK WATCH
+========================================= */
+
+.watch {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+
+.watchrow {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(120px, 1fr)
+    auto
+    auto;
+
+  align-items: center;
+
+  gap: 14px;
+
+  padding: 15px;
+
+  border-radius: 16px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff,
+      #f8f9ff
+    );
+
+  border: 1px solid rgba(99, 102, 241, 0.08);
+
+  box-shadow:
+    0 6px 20px rgba(45, 55, 90, 0.05);
+
+  transform-style: preserve-3d;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+
+.watchrow:hover {
+  transform:
+    translateX(6px)
+    translateZ(8px)
+    rotateY(-2deg);
+
+  border-color:
+    rgba(245, 158, 11, 0.20);
+
+  box-shadow:
+    0 15px 30px rgba(45, 55, 90, 0.10);
+}
+
+
+.watchrow b {
+  display: block;
+
+  color: #172033;
+
+  font-size: 13px;
+
+  font-weight: 800;
+}
+
+
+.watchrow small {
+  display: block;
+
+  margin-top: 5px;
+
+  color: #7a8496;
+
+  font-size: 11px;
+}
+
+
+.watchrow strong {
+  color: #4338ca;
+
+  font-size: 13px;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================
+   LOW STOCK BADGE
+========================================= */
+
+.orangeB {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  padding: 7px 10px;
+
+  border-radius: 999px;
+
+  color: #b45309 !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(245, 158, 11, 0.14),
+      rgba(251, 191, 36, 0.07)
+    );
+
+  border: 1px solid rgba(245, 158, 11, 0.15);
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  white-space: nowrap;
+}
+
+
+.orangeB::before {
+  content: "";
+
+  width: 6px;
+  height: 6px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: #f59e0b;
+
+  box-shadow:
+    0 0 0 4px rgba(245, 158, 11, 0.10);
+
+  animation: stockPulse 1.8s infinite;
+}
+
+
+/* =========================================
+   REPORT BUTTON
+========================================= */
+
+.reportTools {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  padding: 8px 12px;
+
+  border-radius: 10px;
+
+  color: #4338ca;
+
+  background:
+    rgba(99, 102, 241, 0.07);
+
+  border: 1px solid rgba(99, 102, 241, 0.10);
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition:
+    all 0.25s ease;
+}
+
+
+.reportTools:hover {
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #6366f1,
+      #8b5cf6
+    );
+
+  border-color: transparent;
+
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 10px 22px rgba(99, 102, 241, 0.22);
+}
+
+
+.reportTools svg {
+  transition:
+    transform 0.25s ease;
+}
+
+
+.reportTools:hover svg {
+  transform:
+    translate(2px, -2px);
+}
+
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.empty {
+  display: grid;
+
+  place-items: center;
+
+  min-height: 130px;
+
+  padding: 25px;
+
+  border-radius: 15px;
+
+  color: #98a2b3;
+
+  background:
+    rgba(99, 102, 241, 0.025);
+
+  border: 1px dashed rgba(99, 102, 241, 0.12);
+
+  font-size: 13px;
+}
+
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes cardEnter {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(30px)
+      rotateX(10deg)
+      scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      rotateX(0)
+      scale(1);
+  }
+}
+
+
+@keyframes panelEnter {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(25px)
+      rotateX(6deg);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      rotateX(0);
+  }
+}
+
+
+@keyframes dashboardGlow {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(-30px, 25px) scale(1.1);
+  }
+}
+
+
+@keyframes stockPulse {
+  0% {
+    box-shadow:
+      0 0 0 0 rgba(245, 158, 11, 0.30);
+  }
+
+  70% {
+    box-shadow:
+      0 0 0 6px rgba(245, 158, 11, 0);
+  }
+
+  100% {
+    box-shadow:
+      0 0 0 0 rgba(245, 158, 11, 0);
+  }
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1100px) {
+
+  .statGrid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .dash {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+@media (max-width: 700px) {
+
+  .statGrid {
+    grid-template-columns: 1fr;
+
+    gap: 14px;
+  }
+
+  .statGrid > * {
+    min-height: 125px;
+  }
+
+  .dash {
+    grid-template-columns: 1fr;
+
+    gap: 16px;
+  }
+
+  .watchrow {
+    grid-template-columns:
+      1fr auto;
+  }
+
+  .watchrow .badge {
+    grid-column: 1 / -1;
+
+    width: fit-content;
+  }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+
+    transition: none !important;
+  }
+}

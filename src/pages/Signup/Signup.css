@@ -1,0 +1,86 @@
+.loginError{
+  margin:4px 0 10px;
+  padding:10px 12px;
+  border-radius:10px;
+  background:#fff1f2;
+  color:#e11d48;
+  font-size:13px;
+  font-weight:600;
+}
+
+.signupLink{
+  margin-top:18px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:6px;
+  font-size:13px;
+  color:#64748b;
+}
+
+.signupLink button{
+  border:0;
+  background:transparent;
+  color:var(--primary,#6366f1);
+  font-weight:700;
+  padding:0;
+  cursor:pointer;
+}
+
+.signupLink button:hover{
+  text-decoration:underline;
+}
+
+
+.loginCard select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  margin-top: 7px;
+  border: 1px solid #d8dce5;
+  border-radius: 10px;
+  background: #fff;
+  color: #202536;
+  font: inherit;
+  outline: none;
+}
+
+.loginCard select:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+
+.roleInfo {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 10px 0 16px;
+  padding: 12px;
+  border: 1px solid #e0e7ff;
+  border-radius: 10px;
+  background: #f5f7ff;
+  color: #3730a3;
+}
+
+.roleInfo svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.roleInfo strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.roleInfo p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.roleInfo small {
+  display: block;
+  margin-top: 6px;
+  color: #b45309;
+  line-height: 1.4;
+}

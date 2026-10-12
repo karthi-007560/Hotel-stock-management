@@ -1,0 +1,793 @@
+/* =========================================
+   INVENTORY PAGE
+========================================= */
+
+.inventoryPage{
+  position:relative;
+}
+
+.inventoryStats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  margin:24px 0;
+  perspective:1200px;
+}
+
+.inventoryStatCard{
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap:15px;
+  min-height:105px;
+  padding:20px;
+
+  border-radius:22px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff,
+      #f7f8ff
+    );
+
+  border:1px solid rgba(99,102,241,.10);
+
+  box-shadow:
+    0 12px 35px rgba(35,45,75,.08);
+
+  overflow:hidden;
+
+  transform-style:preserve-3d;
+
+  transition:
+    transform .35s ease,
+    box-shadow .35s ease;
+}
+
+.inventoryStatCard:hover{
+  transform:
+    translateY(-7px)
+    rotateX(3deg)
+    rotateY(-2deg);
+
+  box-shadow:
+    0 25px 55px rgba(35,45,75,.14);
+}
+
+.inventoryStatCard::after{
+  content:"";
+
+  position:absolute;
+
+  width:130px;
+  height:130px;
+
+  right:-60px;
+  top:-65px;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(99,102,241,.10),
+      transparent 70%
+    );
+}
+
+.inventoryStatCard span{
+  display:block;
+
+  color:#7b8495;
+
+  font-size:11px;
+  font-weight:700;
+
+  text-transform:uppercase;
+
+  letter-spacing:.04em;
+}
+
+.inventoryStatCard strong{
+  display:block;
+
+  margin-top:4px;
+
+  color:#172033;
+
+  font-size:25px;
+  font-weight:850;
+}
+
+.inventoryStatCard small{
+  display:block;
+
+  margin-top:2px;
+
+  color:#a0a7b5;
+
+  font-size:10px;
+}
+
+
+/* =========================================
+   STAT ICON
+========================================= */
+
+.inventoryStatIcon{
+  width:48px;
+  height:48px;
+
+  display:grid;
+  place-items:center;
+
+  flex-shrink:0;
+
+  border-radius:15px;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.7);
+
+  transform:translateZ(15px);
+}
+
+.inventoryStatIcon.blue{
+  color:#4f46e5;
+
+  background:
+    linear-gradient(
+      145deg,
+      #eef2ff,
+      #e0e7ff
+    );
+}
+
+.inventoryStatIcon.orange{
+  color:#d97706;
+
+  background:
+    linear-gradient(
+      145deg,
+      #fff7ed,
+      #ffedd5
+    );
+}
+
+.inventoryStatIcon.green{
+  color:#059669;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ecfdf5,
+      #d1fae5
+    );
+}
+
+
+/* =========================================
+   SEARCH
+========================================= */
+
+.search{
+  display:flex;
+  align-items:center;
+  gap:8px;
+
+  width:220px;
+
+  padding:9px 12px;
+
+  border-radius:12px;
+
+  background:#f8f9fc;
+
+  border:1px solid #e9ebf2;
+
+  color:#8b94a5;
+
+  transition:
+    border-color .25s ease,
+    box-shadow .25s ease,
+    background .25s ease;
+}
+
+.search:focus-within{
+  background:#ffffff;
+
+  border-color:#818cf8;
+
+  box-shadow:
+    0 0 0 4px rgba(99,102,241,.08);
+}
+
+.search input{
+  width:100%;
+
+  border:0;
+  outline:0;
+
+  background:transparent;
+
+  color:#20283a;
+
+  font-size:12px;
+}
+
+.search input::placeholder{
+  color:#a4aab7;
+}
+
+
+/* =========================================
+   TABLE
+========================================= */
+
+.inventoryTableWrap{
+  overflow-x:auto;
+}
+
+.inventoryTable{
+  min-width:900px;
+}
+
+.inventoryTable thead th{
+  color:#8a93a4;
+
+  font-size:10px;
+  font-weight:800;
+
+  text-transform:uppercase;
+
+  letter-spacing:.05em;
+
+  background:#fafbfe;
+}
+
+.inventoryTable tbody tr{
+  transition:
+    background .25s ease,
+    transform .25s ease;
+}
+
+.inventoryTable tbody tr:hover{
+  background:
+    linear-gradient(
+      90deg,
+      rgba(99,102,241,.035),
+      rgba(99,102,241,.01)
+    );
+}
+
+
+/* =========================================
+   PRODUCT CELL
+========================================= */
+
+.productCell{
+  display:flex;
+  align-items:center;
+  gap:11px;
+}
+
+.productIcon{
+  width:36px;
+  height:36px;
+
+  display:grid;
+  place-items:center;
+
+  flex-shrink:0;
+
+  border-radius:11px;
+
+  color:#4f46e5;
+
+  background:
+    linear-gradient(
+      145deg,
+      #eef2ff,
+      #e0e7ff
+    );
+
+  transition:
+    transform .3s ease;
+}
+
+.inventoryTable tbody tr:hover .productIcon{
+  transform:
+    translateZ(8px)
+    rotate(-5deg)
+    scale(1.08);
+}
+
+.productCell b{
+  display:block;
+
+  color:#20283a;
+
+  font-size:12px;
+  font-weight:800;
+}
+
+.productCell small{
+  display:block;
+
+  margin-top:3px;
+
+  color:#9aa2b1;
+
+  font-size:10px;
+}
+
+
+/* =========================================
+   CATEGORY / UNIT
+========================================= */
+
+.categoryText{
+  color:#596275;
+
+  font-size:12px;
+}
+
+.unitTag{
+  display:inline-flex;
+
+  padding:5px 8px;
+
+  border-radius:8px;
+
+  color:#596275;
+
+  background:#f4f5f8;
+
+  font-size:10px;
+  font-weight:800;
+}
+
+
+/* =========================================
+   STOCK
+========================================= */
+
+.stockGood{
+  color:#059669;
+}
+
+.stockLow{
+  color:#dc2626;
+}
+
+
+/* =========================================
+   ACTION BUTTONS
+========================================= */
+
+.actionBtns{
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+
+.actionBtns button{
+  width:34px;
+  height:34px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:10px;
+
+  border:1px solid #e8eaf0;
+
+  background:#ffffff;
+
+  cursor:pointer;
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    color .25s ease,
+    background .25s ease;
+}
+
+.editBtn{
+  color:#6366f1;
+}
+
+.editBtn:hover{
+  color:#ffffff;
+
+  background:#6366f1;
+
+  border-color:#6366f1;
+
+  transform:
+    translateY(-3px)
+    rotate(-3deg);
+
+  box-shadow:
+    0 8px 18px rgba(99,102,241,.25);
+}
+
+.deleteBtn{
+  color:#ef4444;
+}
+
+.deleteBtn:hover{
+  color:#ffffff;
+
+  background:#ef4444;
+
+  border-color:#ef4444;
+
+  transform:
+    translateY(-3px)
+    rotate(3deg);
+
+  box-shadow:
+    0 8px 18px rgba(239,68,68,.22);
+}
+
+
+/* =========================================
+   MODAL
+========================================= */
+
+.modalOverlay{
+  position:fixed;
+
+  inset:0;
+
+  z-index:999;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  padding:20px;
+
+  background:
+    rgba(15,23,42,.55);
+
+  backdrop-filter:blur(10px);
+
+  animation:
+    modalBg .25s ease;
+}
+
+.modalCard{
+  width:min(520px,100%);
+
+  max-height:90vh;
+
+  overflow-y:auto;
+
+  border-radius:25px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff,
+      #f8f9ff
+    );
+
+  border:1px solid rgba(255,255,255,.7);
+
+  box-shadow:
+    0 35px 90px rgba(15,23,42,.28);
+
+  animation:
+    modalOpen .35s cubic-bezier(.2,.8,.2,1);
+}
+
+
+/* =========================================
+   MODAL HEADER
+========================================= */
+
+.modalHead{
+  display:flex;
+
+  align-items:flex-start;
+  justify-content:space-between;
+
+  gap:20px;
+
+  padding:25px 25px 18px;
+
+  border-bottom:1px solid #edf0f4;
+}
+
+.modalHead h2{
+  margin:5px 0 0;
+
+  color:#172033;
+
+  font-size:23px;
+  font-weight:850;
+}
+
+.modalHead p{
+  margin:7px 0 0;
+
+  color:#8d96a6;
+
+  font-size:11px;
+}
+
+.welcome{
+  color:#6366f1;
+
+  font-size:9px;
+  font-weight:900;
+
+  letter-spacing:.14em;
+}
+
+.iconClose{
+  width:36px;
+  height:36px;
+
+  display:grid;
+  place-items:center;
+
+  border:0;
+
+  border-radius:11px;
+
+  color:#7d8798;
+
+  background:#f2f4f8;
+
+  cursor:pointer;
+
+  transition:
+    all .25s ease;
+}
+
+.iconClose:hover{
+  color:#ffffff;
+
+  background:#ef4444;
+
+  transform:
+    rotate(90deg);
+}
+
+
+/* =========================================
+   FORM
+========================================= */
+
+.modalForm{
+  display:flex;
+
+  flex-direction:column;
+
+  gap:16px;
+
+  padding:24px 25px 25px;
+}
+
+.modalForm label{
+  display:flex;
+
+  flex-direction:column;
+
+  gap:7px;
+
+  color:#566073;
+
+  font-size:11px;
+  font-weight:800;
+}
+
+.modalForm input,
+.modalForm select{
+  width:100%;
+
+  height:44px;
+
+  box-sizing:border-box;
+
+  padding:0 13px;
+
+  border-radius:11px;
+
+  border:1px solid #e2e5ec;
+
+  outline:0;
+
+  color:#20283a;
+
+  background:#ffffff;
+
+  font-family:inherit;
+
+  font-size:12px;
+
+  transition:
+    border-color .25s ease,
+    box-shadow .25s ease,
+    transform .25s ease;
+}
+
+.modalForm input:focus,
+.modalForm select:focus{
+  border-color:#818cf8;
+
+  box-shadow:
+    0 0 0 4px rgba(99,102,241,.08);
+
+  transform:
+    translateY(-1px);
+}
+
+.modalForm input::placeholder{
+  color:#b0b6c2;
+}
+
+.modalGrid{
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:14px;
+}
+
+
+/* =========================================
+   MODAL ACTIONS
+========================================= */
+
+.modalActions{
+  display:flex;
+
+  justify-content:flex-end;
+
+  gap:10px;
+
+  margin-top:5px;
+
+  padding-top:18px;
+
+  border-top:1px solid #edf0f4;
+}
+
+.modalActions button{
+  height:42px;
+
+  padding:0 18px;
+
+  border-radius:11px;
+
+  border:0;
+
+  font-size:11px;
+  font-weight:800;
+
+  cursor:pointer;
+
+  transition:
+    all .25s ease;
+}
+
+.cancel{
+  color:#697386;
+
+  background:#f0f2f6;
+}
+
+.cancel:hover{
+  color:#303849;
+
+  background:#e5e7ed;
+
+  transform:translateY(-2px);
+}
+
+.save{
+  color:#ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #6366f1,
+      #8b5cf6
+    );
+
+  box-shadow:
+    0 8px 20px rgba(99,102,241,.22);
+}
+
+.save:hover{
+  transform:
+    translateY(-3px);
+
+  box-shadow:
+    0 14px 28px rgba(99,102,241,.30);
+}
+
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes modalBg{
+  from{
+    opacity:0;
+  }
+
+  to{
+    opacity:1;
+  }
+}
+
+@keyframes modalOpen{
+  from{
+    opacity:0;
+
+    transform:
+      translateY(30px)
+      scale(.94)
+      rotateX(5deg);
+  }
+
+  to{
+    opacity:1;
+
+    transform:
+      translateY(0)
+      scale(1)
+      rotateX(0);
+  }
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media(max-width:1000px){
+
+  .inventoryStats{
+    grid-template-columns:1fr 1fr;
+  }
+
+}
+
+@media(max-width:650px){
+
+  .inventoryStats{
+    grid-template-columns:1fr;
+  }
+
+  .search{
+    width:100%;
+  }
+
+  .modalGrid{
+    grid-template-columns:1fr;
+  }
+
+  .modalHead{
+    padding:20px;
+  }
+
+  .modalForm{
+    padding:20px;
+  }
+
+  .modalActions{
+    flex-direction:column-reverse;
+  }
+
+  .modalActions button{
+    width:100%;
+  }
+
+}

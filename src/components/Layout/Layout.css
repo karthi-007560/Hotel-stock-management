@@ -1,0 +1,837 @@
+/* =========================
+   RESPONSIVE APP LAYOUT
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+.shell {
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: clip;
+  background: var(--bg);
+  isolation: isolate;
+}
+
+/* =========================
+   3D BACKGROUND
+========================= */
+
+.scene3d {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  perspective: 1000px;
+}
+
+.cube {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  transform-style: preserve-3d;
+  opacity: 0.08;
+  animation: rotateCube 18s linear infinite;
+}
+
+.cube span {
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--primary);
+  background: linear-gradient(
+    135deg,
+    var(--primary-soft),
+    transparent
+  );
+  backdrop-filter: blur(4px);
+}
+
+.cube span:nth-child(1) {
+  transform: translateZ(35px);
+}
+
+.cube span:nth-child(2) {
+  transform: rotateY(180deg) translateZ(35px);
+}
+
+.cube span:nth-child(3) {
+  transform: rotateY(90deg) translateZ(35px);
+}
+
+.cube span:nth-child(4) {
+  transform: rotateY(-90deg) translateZ(35px);
+}
+
+.cube span:nth-child(5) {
+  transform: rotateX(90deg) translateZ(35px);
+}
+
+.cube span:nth-child(6) {
+  transform: rotateX(-90deg) translateZ(35px);
+}
+
+.cube1 {
+  top: 15%;
+  right: 8%;
+}
+
+.cube2 {
+  bottom: 12%;
+  right: 28%;
+  width: 45px;
+  height: 45px;
+  animation-duration: 22s;
+  animation-direction: reverse;
+}
+
+.orb3d {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 30% 30%,
+    var(--primary),
+    transparent 65%
+  );
+  opacity: 0.1;
+  filter: blur(1px);
+  transform-style: preserve-3d;
+  animation: orbFloat 8s ease-in-out infinite;
+}
+
+.orbOne {
+  width: 220px;
+  height: 220px;
+  top: -80px;
+  right: 15%;
+}
+
+.orbTwo {
+  width: 150px;
+  height: 150px;
+  bottom: 5%;
+  left: 30%;
+  animation-delay: 2s;
+}
+
+.orbThree {
+  width: 100px;
+  height: 100px;
+  top: 40%;
+  right: 35%;
+  animation-delay: 4s;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.side {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  flex: 0 0 255px;
+  width: 255px;
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  padding: 22px 16px;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    var(--surface),
+    var(--surface-2)
+  );
+  border-right: 1px solid var(--border);
+  box-shadow: 10px 0 35px rgba(15, 23, 42, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  flex-shrink: 0;
+  padding: 6px 7px 24px;
+}
+
+.brandIcon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 13px;
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 8px 20px
+    color-mix(in srgb, var(--primary) 30%, transparent);
+  animation: brandFloat 4s ease-in-out infinite;
+}
+
+.brand b {
+  display: block;
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.brand small {
+  display: block;
+  margin-top: 2px;
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.close {
+  display: none;
+  margin-left: auto;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.cap {
+  flex-shrink: 0;
+  margin: 4px 8px 10px;
+  color: var(--text-muted);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+}
+
+/* Sidebar menu scrolls independently */
+
+.side nav {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 5px;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.nav {
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 43px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.nav svg {
+  flex-shrink: 0;
+}
+
+.nav:hover {
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.nav.active {
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 8px 22px
+    color-mix(in srgb, var(--primary) 28%, transparent);
+}
+
+.sideBottom {
+  flex-shrink: 0;
+  margin-top: 12px;
+}
+
+.tip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface-2);
+}
+
+.tipIcon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.tip b {
+  display: block;
+  color: var(--text);
+  font-size: 12px;
+}
+
+.tip span {
+  display: block;
+  margin-top: 2px;
+  color: var(--text-muted);
+  font-size: 10px;
+}
+
+.logout {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.logout:hover {
+  background: #fff1f2;
+  color: #e11d48;
+  border-color: #fecdd3;
+}
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+.main {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 0;
+  width: 0;
+  min-width: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.main > header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  flex-shrink: 0;
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 28px;
+  background: color-mix(
+    in srgb,
+    var(--surface) 92%,
+    transparent
+  );
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+}
+
+.headerTitle {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.headerTitle small {
+  color: var(--text-muted);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.headerTitle b {
+  color: var(--text);
+  font-size: 15px;
+}
+
+.right {
+  min-width: 0;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.right > span {
+  color: var(--text-muted);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.right i {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  font-style: normal;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.userInfo {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.userText {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.userText b,
+.userText small {
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.userText b {
+  color: var(--text);
+  font-size: 12px;
+}
+
+.userText small {
+  color: var(--text-muted);
+  font-size: 10px;
+}
+
+/* =========================
+   MOBILE MENU BUTTON
+========================= */
+
+.menu {
+  display: none;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+}
+
+/* =========================
+   PAGE AREA
+========================= */
+
+.main > main {
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
+  padding: 26px;
+}
+
+/* Prevent child content from forcing wide layouts */
+
+.main > main > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.main table {
+  max-width: 100%;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes rotateCube {
+  from {
+    transform: rotateX(0) rotateY(0) rotateZ(0);
+  }
+
+  to {
+    transform: rotateX(360deg) rotateY(360deg) rotateZ(180deg);
+  }
+}
+
+@keyframes orbFloat {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(20px, -20px, 30px) scale(1.06);
+  }
+}
+
+@keyframes brandFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 1100px) {
+  .side {
+    flex-basis: 225px;
+    width: 225px;
+    padding: 20px 12px;
+  }
+
+  .main > header {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .main > main {
+    padding: 20px;
+  }
+
+  .userText b,
+  .userText small {
+    max-width: 130px;
+  }
+}
+
+/* =========================
+   MOBILE SIDEBAR
+========================= */
+
+@media (max-width: 768px) {
+  .shell {
+    display: block;
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow-x: clip;
+  }
+
+  .side {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 100;
+    width: min(290px, 86vw);
+    min-width: 0;
+    height: 100vh;
+    height: 100dvh;
+    padding: 18px 14px;
+    transform: translateX(-105%);
+    visibility: hidden;
+    transition:
+      transform 0.28s ease,
+      visibility 0.28s ease;
+    box-shadow: 15px 0 40px rgba(15, 23, 42, 0.18);
+  }
+
+  .side.open {
+    transform: translateX(0);
+    visibility: visible;
+  }
+
+  .close {
+    display: flex;
+  }
+
+  .main {
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  .main > header {
+    min-height: 64px;
+    gap: 10px;
+    padding: 10px 14px;
+  }
+
+  .menu {
+    display: flex;
+  }
+
+  .headerTitle small {
+    font-size: 9px;
+  }
+
+  .headerTitle b {
+    font-size: 14px;
+  }
+
+  .right {
+    gap: 8px;
+  }
+
+  .main > main {
+    padding: 16px 14px;
+  }
+
+  .cube {
+    opacity: 0.05;
+  }
+
+  .orbOne {
+    width: 150px;
+    height: 150px;
+  }
+
+  .orbTwo {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 480px) {
+  .main > header {
+    padding: 9px 10px;
+    gap: 8px;
+  }
+
+  .menu {
+    width: 36px;
+    height: 36px;
+    margin-right: 0;
+  }
+
+  .headerTitle {
+    flex: 1;
+  }
+
+  .headerTitle small {
+    letter-spacing: 0.4px;
+  }
+
+  .headerTitle b {
+    font-size: 13px;
+  }
+
+  .right {
+    margin-left: 0;
+  }
+
+  .right > span {
+    display: none;
+  }
+
+  .right i {
+    width: 33px;
+    height: 33px;
+  }
+
+  .userInfo {
+    gap: 0;
+  }
+
+  .userText {
+    display: none;
+  }
+
+  .main > main {
+    padding: 12px 9px;
+  }
+
+  .orbThree {
+    width: 65px;
+    height: 65px;
+  }
+}
+
+/* =========================
+   VERY SMALL SCREENS
+========================= */
+
+@media (max-width: 360px) {
+  .main > header {
+    gap: 6px;
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+
+  .headerTitle b {
+    font-size: 12px;
+  }
+
+  .headerTitle small {
+    font-size: 8px;
+  }
+
+  .main > main {
+    padding: 10px 7px;
+  }
+}
+
+/* =========================
+   DARK MODE
+========================= */
+
+html[data-mode="dark"] .side {
+  box-shadow: 10px 0 40px rgba(0, 0, 0, 0.25);
+}
+
+/* =========================
+   ACCESSIBILITY
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .cube,
+  .orb3d,
+  .brandIcon {
+    animation: none !important;
+  }
+
+  .nav,
+  .side,
+  .close {
+    transition: none !important;
+  }
+}
+
+
+/* Main layout */
+.shell {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Fixed left sidebar */
+.side {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+
+  width: 255px;
+  height: 100vh;
+  flex: 0 0 255px;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  z-index: 1000;
+}
+
+/* Main content scrolls independently */
+.main {
+  margin-left: 255px;
+  width: calc(100% - 255px);
+  min-width: 0;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Header stays at the top of content */
+.main > header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  flex-shrink: 0;
+}
+
+/* Page content */
+.main > main {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+/* Tablet */
+@media (max-width: 1100px) {
+  .side {
+    width: 230px;
+  }
+
+  .main {
+    margin-left: 230px;
+    width: calc(100% - 230px);
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .side {
+    width: 255px;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .side.open {
+    transform: translateX(0);
+  }
+
+  .main {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .main > main {
+    padding: 16px;
+  }
+}

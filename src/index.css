@@ -1,0 +1,995 @@
+/* ========================================
+   GLOBAL RESET
+======================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
+  --primary-soft: #eef2ff;
+
+  --bg: #f6f8fc;
+  --surface: #ffffff;
+  --surface-2: #f8fafc;
+
+  --text: #172033;
+  --text-muted: #64748b;
+
+  --border: #e2e8f0;
+  --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+
+  --radius: 16px;
+}
+
+/* ========================================
+   THEME COLORS
+======================================== */
+
+html[data-theme="indigo"] {
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
+  --primary-soft: #eef2ff;
+}
+
+html[data-theme="blue"] {
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --primary-soft: #eff6ff;
+}
+
+html[data-theme="green"] {
+  --primary: #059669;
+  --primary-dark: #047857;
+  --primary-soft: #ecfdf5;
+}
+
+html[data-theme="purple"] {
+  --primary: #8b5cf6;
+  --primary-dark: #7c3aed;
+  --primary-soft: #f5f3ff;
+}
+
+html[data-theme="orange"] {
+  --primary: #f97316;
+  --primary-dark: #ea580c;
+  --primary-soft: #fff7ed;
+}
+
+html[data-theme="rose"] {
+  --primary: #e11d48;
+  --primary-dark: #be123c;
+  --primary-soft: #fff1f2;
+}
+
+/* ========================================
+   LIGHT MODE
+======================================== */
+
+html[data-mode="light"] {
+  color-scheme: light;
+
+  --bg: #f6f8fc;
+  --surface: #ffffff;
+  --surface-2: #f8fafc;
+
+  --text: #172033;
+  --text-muted: #64748b;
+
+  --border: #e2e8f0;
+  --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+/* ========================================
+   DARK MODE
+======================================== */
+
+html[data-mode="dark"] {
+  color-scheme: dark;
+
+  --bg: #0f172a;
+  --surface: #111827;
+  --surface-2: #1e293b;
+
+  --text: #f8fafc;
+  --text-muted: #cbd5e1;
+
+  --border: #334155;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* ========================================
+   HTML AND BODY
+======================================== */
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  padding: 0;
+
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  background: var(--bg);
+  color: var(--text);
+
+  overflow-x: hidden;
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+#root {
+  background: var(--bg);
+  color: var(--text);
+
+  min-height: 100vh;
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+/* ========================================
+   COMMON ELEMENTS
+======================================== */
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+}
+
+/* ========================================
+   PAGE
+======================================== */
+
+.page {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+
+  color: var(--text);
+
+  animation: fadeUp 0.45s ease both;
+}
+
+/* ========================================
+   COMMON PANELS AND CARDS
+======================================== */
+
+.panel,
+.card,
+.statCard,
+.settingsSave {
+  max-width: 100%;
+
+  color: var(--text);
+  border-color: var(--border);
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    border-radius 0.3s ease;
+}
+
+/* ========================================
+   TEXT COLORS
+======================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+label,
+th,
+td {
+  color: var(--text);
+}
+
+small,
+.muted,
+.subtitle {
+  color: var(--text-muted);
+}
+
+/* ========================================
+   INPUTS
+======================================== */
+
+input,
+select,
+textarea {
+  max-width: 100%;
+
+  background-color: var(--surface);
+  color: var(--text);
+
+  border: 1px solid var(--border);
+  border-radius: 8px;
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 1;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 1px;
+}
+
+/* ========================================
+   DARK MODE TEXT
+======================================== */
+
+html[data-mode="dark"] body,
+html[data-mode="dark"] #root,
+html[data-mode="dark"] .page {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+html[data-mode="dark"] h1,
+html[data-mode="dark"] h2,
+html[data-mode="dark"] h3,
+html[data-mode="dark"] h4,
+html[data-mode="dark"] h5,
+html[data-mode="dark"] h6,
+html[data-mode="dark"] p,
+html[data-mode="dark"] label,
+html[data-mode="dark"] strong,
+html[data-mode="dark"] b,
+html[data-mode="dark"] th,
+html[data-mode="dark"] td {
+  color: var(--text);
+}
+
+html[data-mode="dark"] small,
+html[data-mode="dark"] .muted,
+html[data-mode="dark"] .subtitle {
+  color: var(--text-muted);
+}
+
+/* ========================================
+   DARK MODE PANELS
+======================================== */
+
+html[data-mode="dark"] .panel,
+html[data-mode="dark"] .card,
+html[data-mode="dark"] .statCard,
+html[data-mode="dark"] .settingsSave,
+html[data-mode="dark"] .side,
+html[data-mode="dark"] header {
+  background-color: var(--surface);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+/* ========================================
+   DARK MODE FORM FIELDS
+======================================== */
+
+html[data-mode="dark"] input,
+html[data-mode="dark"] select,
+html[data-mode="dark"] textarea {
+  background-color: var(--surface-2);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+html[data-mode="dark"] input::placeholder,
+html[data-mode="dark"] textarea::placeholder {
+  color: var(--text-muted);
+}
+
+/* ========================================
+   DARK MODE TABLES
+======================================== */
+
+html[data-mode="dark"] table {
+  color: var(--text);
+}
+
+html[data-mode="dark"] th,
+html[data-mode="dark"] td {
+  color: var(--text);
+  border-color: var(--border);
+}
+
+html[data-mode="dark"] thead {
+  background-color: var(--surface-2);
+}
+
+html[data-mode="dark"] tbody tr {
+  border-color: var(--border);
+}
+
+html[data-mode="dark"] tbody tr:hover {
+  background-color: var(--surface-2);
+}
+
+/* ========================================
+   SIDEBAR AND HEADER
+======================================== */
+
+.side,
+header {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+html[data-mode="dark"] .side a,
+html[data-mode="dark"] header a {
+  color: var(--text);
+}
+
+/* ========================================
+   PRIMARY BUTTON
+======================================== */
+
+.primary {
+  background-color: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+}
+
+.primary:hover {
+  background-color: var(--primary-dark);
+  border-color: var(--primary-dark);
+}
+
+/* ========================================
+   MODERN STYLE
+======================================== */
+
+html[data-style="modern"] {
+  --radius: 16px;
+  --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+html[data-style="modern"] .panel,
+html[data-style="modern"] .card,
+html[data-style="modern"] .statCard {
+  border-radius: var(--radius);
+}
+
+/* ========================================
+   GLASS STYLE
+======================================== */
+
+html[data-style="glass"] {
+  --radius: 20px;
+  --shadow: 0 15px 40px rgba(15, 23, 42, 0.12);
+}
+
+html[data-style="glass"] .panel,
+html[data-style="glass"] .card,
+html[data-style="glass"] .statCard,
+html[data-style="glass"] .settingsSave {
+  background-color: color-mix(
+    in srgb,
+    var(--surface) 82%,
+    transparent
+  );
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* ========================================
+   MINIMAL STYLE
+======================================== */
+
+html[data-style="minimal"] {
+  --radius: 10px;
+  --shadow: none;
+}
+
+html[data-style="minimal"] .panel,
+html[data-style="minimal"] .card,
+html[data-style="minimal"] .statCard,
+html[data-style="minimal"] .settingsSave {
+  box-shadow: none;
+  border-radius: 10px;
+}
+
+/* ========================================
+   TABLE RESPONSIVENESS
+======================================== */
+
+.tableWrap {
+  width: 100%;
+  max-width: 100%;
+
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tableWrap table {
+  width: 100%;
+}
+
+/* ========================================
+   RESPONSIVE GRID
+======================================== */
+
+.grid {
+  display: grid;
+
+  width: 100%;
+  min-width: 0;
+
+  gap: 20px;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* ========================================
+   LARGE TABLET
+======================================== */
+
+@media (max-width: 1200px) {
+  .grid-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 900px) {
+  .grid-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grid-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .grid {
+    gap: 14px;
+  }
+
+  .panel,
+  .card,
+  .statCard {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .tableWrap table {
+    min-width: 650px;
+  }
+
+  .tableWrap {
+    border-radius: 12px;
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+  }
+}
+
+/* ========================================
+   SMALL MOBILE
+======================================== */
+
+@media (max-width: 480px) {
+  body {
+    font-size: 13px;
+  }
+
+  .page {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .panel,
+  .card,
+  .statCard,
+  .settingsSave {
+    border-radius: 12px;
+  }
+
+  h1 {
+    font-size: 24px;
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  h3 {
+    font-size: 17px;
+  }
+}
+
+/* ========================================
+   VERY SMALL MOBILE
+======================================== */
+
+@media (max-width: 360px) {
+  body {
+    font-size: 12px;
+  }
+
+  .page {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  h1 {
+    font-size: 21px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  h3 {
+    font-size: 16px;
+  }
+}
+
+/* ========================================
+   ANIMATIONS
+======================================== */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+.float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* ========================================
+   REDUCED MOTION
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+
+/* =========================================
+   GLOBAL THEME + TEXT COLORS
+========================================= */
+
+:root {
+  --primary-color: #6366f1;
+  --heading-color: #20283a;
+  --text-color: #475166;
+  --muted-color: #929aaa;
+  --page-bg: #f5f7fb;
+  --card-bg: #ffffff;
+  --border-color: #e7eaf1;
+}
+
+/* Theme colors */
+
+html[data-theme="indigo"] {
+  --primary-color: #6366f1;
+}
+
+html[data-theme="blue"] {
+  --primary-color: #2563eb;
+}
+
+html[data-theme="green"] {
+  --primary-color: #059669;
+}
+
+html[data-theme="purple"] {
+  --primary-color: #8b5cf6;
+}
+
+html[data-theme="orange"] {
+  --primary-color: #f97316;
+}
+
+html[data-theme="rose"] {
+  --primary-color: #e11d48;
+}
+
+/* Light mode */
+
+html[data-mode="light"] {
+  --heading-color: #20283a;
+  --text-color: #475166;
+  --muted-color: #929aaa;
+  --page-bg: #f5f7fb;
+  --card-bg: #ffffff;
+  --border-color: #e7eaf1;
+}
+
+/* Dark mode */
+
+html[data-mode="dark"] {
+  --heading-color: #f1f5f9;
+  --text-color: #d1d9e6;
+  --muted-color: #a0aec0;
+  --page-bg: #111827;
+  --card-bg: #1f2937;
+  --border-color: #374151;
+}
+
+/* Main page text */
+
+body {
+  color: var(--text-color);
+  background-color: var(--page-bg);
+  transition: background-color .25s ease, color .25s ease;
+}
+
+h1, h2, h3, h4, h5, h6,
+.page-title,
+.panel-title,
+.header-title {
+  color: var(--heading-color);
+}
+
+p, label, small,
+.text-muted,
+.subtitle {
+  color: var(--muted-color);
+}
+
+/* Theme-colored highlights and active items */
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline-color: var(--primary-color);
+}
+
+.active,
+.selectedCheck,
+.primaryText,
+.themeText {
+  color: var(--primary-color);
+}
+
+/* Common dashboard surfaces */
+
+.panel,
+.card,
+.stat-card,
+.table-container,
+.modal-content {
+  border-color: var(--border-color);
+}
+
+/* Dark mode common surfaces */
+
+html[data-mode="dark"] .panel,
+html[data-mode="dark"] .card,
+html[data-mode="dark"] .stat-card,
+html[data-mode="dark"] .table-container,
+html[data-mode="dark"] .modal-content {
+  color: var(--text-color);
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+}
+
+/* Inputs */
+
+html[data-mode="dark"] input,
+html[data-mode="dark"] select,
+html[data-mode="dark"] textarea {
+  color: var(--heading-color);
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+}
+
+html[data-mode="dark"] input::placeholder,
+html[data-mode="dark"] textarea::placeholder {
+  color: var(--muted-color);
+}
+
+
+/* SETTINGS THEME VISIBILITY FIX */
+
+html[data-mode="light"] body,
+html[data-mode="light"] #root {
+  background: var(--bg) !important;
+  color: var(--text) !important;
+}
+
+html[data-mode="dark"] body,
+html[data-mode="dark"] #root,
+html[data-mode="dark"] .page {
+  background: var(--bg) !important;
+  color: var(--text) !important;
+}
+
+html[data-mode="light"] .page h1,
+html[data-mode="light"] .page h2,
+html[data-mode="light"] .page h3,
+html[data-mode="light"] .page h4,
+html[data-mode="light"] .page strong,
+html[data-mode="light"] .page b,
+html[data-mode="light"] .page label,
+html[data-mode="light"] .page th,
+html[data-mode="light"] .page td {
+  color: var(--text);
+}
+
+html[data-mode="dark"] .page h1,
+html[data-mode="dark"] .page h2,
+html[data-mode="dark"] .page h3,
+html[data-mode="dark"] .page h4,
+html[data-mode="dark"] .page strong,
+html[data-mode="dark"] .page b,
+html[data-mode="dark"] .page label,
+html[data-mode="dark"] .page th,
+html[data-mode="dark"] .page td {
+  color: var(--text) !important;
+}
+
+html[data-mode="dark"] .page p,
+html[data-mode="dark"] .page small,
+html[data-mode="dark"] .page .subtitle {
+  color: var(--text-muted) !important;
+}
+
+/* Apply selected theme to active UI elements */
+
+html[data-theme] .page .selectedCheck,
+html[data-theme] .page .colorOption.selected {
+  border-color: var(--primary);
+}
+
+html[data-theme] .page .selectedCheck,
+html[data-theme] .page .previewSparkle {
+  color: var(--primary);
+}
+
+html[data-theme] .page .primary {
+  color: #ffffff;
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+
+/* FIX: DARK MODE TABLE VISIBILITY */
+
+html[data-mode="dark"] .panel,
+html[data-mode="dark"] .panel > div,
+html[data-mode="dark"] .tableWrap,
+html[data-mode="dark"] .table-container {
+  color: #f1f5f9;
+}
+
+html[data-mode="dark"] table {
+  background: #1e293b !important;
+  color: #f1f5f9 !important;
+}
+
+html[data-mode="dark"] thead,
+html[data-mode="dark"] thead tr,
+html[data-mode="dark"] thead th {
+  background: #263449 !important;
+  color: #e2e8f0 !important;
+  border-color: #475569 !important;
+}
+
+html[data-mode="dark"] tbody,
+html[data-mode="dark"] tbody tr,
+html[data-mode="dark"] tbody td {
+  background: #1e293b !important;
+  color: #e2e8f0 !important;
+  border-color: #334155 !important;
+}
+
+html[data-mode="dark"] tbody tr:hover,
+html[data-mode="dark"] tbody tr:hover td {
+  background: #29364b !important;
+}
+
+html[data-mode="dark"] .panel h1,
+html[data-mode="dark"] .panel h2,
+html[data-mode="dark"] .panel h3,
+html[data-mode="dark"] .panel h4,
+html[data-mode="dark"] .panel p,
+html[data-mode="dark"] .panel span,
+html[data-mode="dark"] .panel label,
+html[data-mode="dark"] .panel th,
+html[data-mode="dark"] .panel td {
+  color: #e2e8f0;
+}
+
+html[data-mode="dark"] input,
+html[data-mode="dark"] select,
+html[data-mode="dark"] textarea {
+  background: #1e293b !important;
+  color: #f8fafc !important;
+  border-color: #475569 !important;
+}
+
+html[data-mode="dark"] input::placeholder,
+html[data-mode="dark"] textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+
+/* FIX SUPPLIER MODAL — FORCE VISIBLE TEXT */
+
+body h2,
+body h3 {
+  color: var(--text, #172033);
+}
+
+body .modal-overlay h1,
+body .modal-overlay h2,
+body .modal-overlay h3,
+body .modal-overlay label,
+body .modal-overlay p,
+body .modal-overlay span,
+body .modal-overlay strong,
+body .modalOverlay h1,
+body .modalOverlay h2,
+body .modalOverlay h3,
+body .modalOverlay label,
+body .modalOverlay p,
+body .modalOverlay span,
+body .modalOverlay strong {
+  color: #1e293b !important;
+  -webkit-text-fill-color: #1e293b !important;
+}
+
+body .modal-overlay input,
+body .modal-overlay select,
+body .modal-overlay textarea,
+body .modalOverlay input,
+body .modalOverlay select,
+body .modalOverlay textarea {
+  color: #1e293b !important;
+  -webkit-text-fill-color: #1e293b !important;
+  background: #ffffff !important;
+}
+
+/* Keep primary action button readable */
+
+body .modal-overlay button,
+body .modalOverlay button {
+  -webkit-text-fill-color: inherit;
+}
+
+body .modal-overlay button[type="submit"],
+body .modalOverlay button[type="submit"] {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  background: #2563eb !important;
+}

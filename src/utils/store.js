@@ -1,0 +1,25 @@
+const KEYS={inventory:'hotel_inventory_v2',purchases:'hotel_purchases_v2',usage:'hotel_usage_v2',wastage:'hotel_wastage_v2',suppliers:'hotel_suppliers_v2',closing:'hotel_closing_v2',settings:'hotel_settings_v2'};
+const read=(key,fallback=[])=>{try{const v=localStorage.getItem(key);return v?JSON.parse(v):fallback}catch{return fallback}};
+const write=(key,value)=>{localStorage.setItem(key,JSON.stringify(value));window.dispatchEvent(new Event('hotel_data_updated'));return value};
+export const getInventory=()=>read(KEYS.inventory,[]);
+export const saveInventory=v=>write(KEYS.inventory,v);
+export const getPurchases=()=>read(KEYS.purchases,[]);
+export const savePurchases=v=>write(KEYS.purchases,v);
+export const getUsage=()=>read(KEYS.usage,[]);
+export const saveUsage=v=>write(KEYS.usage,v);
+export const getWastage=()=>read(KEYS.wastage,[]);
+export const saveWastage=v=>write(KEYS.wastage,v);
+export const getSuppliers=()=>read(KEYS.suppliers,[]);
+export const saveSuppliers=v=>write(KEYS.suppliers,v);
+export const getClosings=()=>read(KEYS.closing,[]);
+export const saveClosings=v=>write(KEYS.closing,v);
+export const getSettings=()=>read(KEYS.settings,{hotelName:'Hotel Store',phone:'',email:'',address:'',currency:'INR',lowStock:'on'});
+export const saveSettings=v=>write(KEYS.settings,v);
+export const todayKey=()=>new Date().toISOString().slice(0,10);
+export const dateLabel=d=>new Date(d+'T00:00:00').toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
+export const money=n=>`₹${Number(n||0).toLocaleString('en-IN',{maximumFractionDigits:2})}`;
+export const uid=prefix=>`${prefix}-${Date.now()}-${Math.random().toString(36).slice(2,7)}`;
+export const startOfWeek=d=>{const x=new Date(d);const day=x.getDay();const diff=day===0?-6:1-day;x.setDate(x.getDate()+diff);return x.toISOString().slice(0,10)};
+export const startOfMonth=d=>{const x=new Date(d);x.setDate(1);return x.toISOString().slice(0,10)};
+export const inRange=(date,start,end)=>date>=start&&date<=end;
+export function downloadCSV(filename,rows){const csv=rows.map(r=>r.map(v=>`"${String(v??'').replaceAll('"','""')}"`).join(',')).join('\n');const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=filename;a.click();URL.revokeObjectURL(a.href)}
